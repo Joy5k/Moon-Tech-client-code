@@ -11,7 +11,12 @@ const productReducer = (state = initialState, action) => {
         case ADD_TO_CART:
             //If the product is already selected then it will be returned for the functionality
             if (selectedProduct) {
-                return state;
+                const newCart = state.cart.filter(product => product._id !== selectedProduct._id)
+                selectedProduct.quantity = selectedProduct.quantity + 1;
+                return {
+                    ...state,
+                    cart:[...newCart,selectedProduct]
+                };
             }
             return {
 
@@ -19,6 +24,7 @@ const productReducer = (state = initialState, action) => {
                 cart:[...state.cart, {...action.payload,quantity:1}]
             };
         case REMOVE_FROM_CART:
+            
             return {
                 ...state,
                 cart:state.cart.filter(product=>product._id !== action.payload._id)
