@@ -1,4 +1,3 @@
-import { computeHeadingLevel } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { useSelector } from "react-redux";
